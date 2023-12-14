@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="your-icon.png" type="image/png">
+    <title>Job Finder Chatbot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background: url("https://cdn.pixabay.com/photo/2015/06/10/07/03/building-804526_1280.jpg");
+            background-size: cover;
+        }
+
+        #openChatButton {
+            display: block;
+            position: fixed;
+            bottom: 3%;
+            right: 3%;
+            z-index: 100;
+            transition: all 1s ease-in-out;
+        }
+
+        #chatContainer {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            display: none;
+            flex-direction: column;
+            background-color: #ffffff;
+            border-radius: 10px 10px 0 0;
+            padding: 20px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            transition: all 1s ease-in-out;
+        }
+
+        #closeChatButton {
+            margin-left: auto;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        #jobChat {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body class="container mt-5 d-flex flex-column text-left" style="height: 90vh; padding-left: 20px;">
+
+    <h1 class="mt-5" style="color: #ffffff">AI Powered Job Finder Chatbot</h1>
+    <p style="color: #ffffff">A chatbot to help you find your dream job</p>
+
+    <h2 style="color: #ffffff">Explore job opportunities and get career advice</h2>
+
+    <a href="https://github.com/shanOnline99/Job-finding-chat-bot" class="btn btn-dark mt-5"
+        style="width: 200px; font-size: larger;">Visit Repository</a>
+
+    <h3 class="mt-auto" style="color: #ffffff">Click on the chat button to start exploring
+        <svg
+            
+            class="ml-2" xmlns="http://www.w3.org/2000/svg" height="1em"
+            viewBox="0 0 448 512">
+            <path
+                d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z" />
+        </svg></h3>
+
+    <div id="chatContainer" class="flex-column p-3" style="display: none; height: 600px;">
+        <button id="closeChatButton" class="ml-auto mb-2 btn btn-danger">X</button>
+        <!-- Embed your job-finding chatbot iframe here -->
+        <iframe id="jobChat" width="100%" height="100%" allow="microphone;"
+            src="https://console.dialogflow.com/api-client/demo/embedded/13e7017b-3b54-4c97-8112-e4770134b868"></iframe>
+    </div>
+
+    <button id="openChatButton" class="position-fixed bottom-3 right-4 btn p-1 px-2 btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="30px" height="30px" viewBox="0 0 32 32" id="icon">
+            <defs>
+                <style>
+                    .cls-1 {
+                        fill: none;
+                    }
+                </style>
+            </defs>
+            <title>chat-bot</title>
+            <path
+                d="M16,19a6.9908,6.9908,0,0,1-5.833-3.1287l1.666-1.1074a5.0007,5.0007,0,0,0,8.334,0l1.666,1.1074A6.9908,6.9908,0,0,1,16,19Z" />
+            <path d="M20,8a2,2,0,1,0,2,2A1.9806,1.9806,0,0,0,20,8Z" />
+            <path d="M12,8a2,2,0,1,0,2,2A1.9806,1.9806,0,0,0,12,8Z" />
+            <path
+                d="M17.7358,30,16,29l4-7h6a1.9966,1.9966,0,0,0,2-2V6a1.9966,1.9966,0,0,0-2-2H6A1.9966,1.9966,0,0,0,4,6V20a1.9966,1.9966,0,0,0,2,2h9v2H6a3.9993,3.9993,0,0,1-4-4V6A3.9988,3.9988,0,0,1,6,2H26a3.9988,3.9988,0,0,1,4,4V20a3.9993,3.9993,0,0,1-4,4H21.1646Z" />
+            <rect id="_Transparent_Rectangle_" data-name="&lt;Transparent Rectangle&gt;" class="cls-1" width="32"
+                height="32" />
+        </svg>
+    </button>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const chatContainer = document.getElementById('chatContainer');
+            const openChatButton = document.getElementById('openChatButton');
+            const closeChatButton = document.getElementById('closeChatButton');
+
+            // Show chat when the open chat button is clicked
+            openChatButton.addEventListener('click', function () {
+                openChatButton.style.display = 'none';
+                chatContainer.style.display = 'flex';
+                chatContainer.style.height = '600px';  // Adjusted height
+                closeChatButton.style.display = 'block';
+            });
+
+            // Hide chat when the close button is clicked
+            closeChatButton.addEventListener('click', function () {
+                openChatButton.style.display = 'block';
+                chatContainer.style.display = 'none';
+                chatContainer.style.height = '0';
+                closeChatButton.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>
